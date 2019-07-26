@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { fetchSmurfs, addSmurf } from '../store/actions';
+import { fetchSmurfs, addSmurf, deleteSmurf, updateSmurf } from '../store/actions';
 
 import Loader from 'react-loader-spinner';
 import { Button } from 'antd';
@@ -57,7 +57,7 @@ const App = props => {
           </form>
         </div>
         {props.isLoading && <Loader type="TailSpin" color="tomato" height={300} width={300} />}
-        {props.smurfs && <SmurfList smurfs={props.smurfs} />}
+        {props.smurfs && <SmurfList smurfs={props.smurfs} updateSmurf={props.updateSmurf} deleteSmurf={props.deleteSmurf}/>}
       </div>
     );
 }
@@ -72,5 +72,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchSmurfs, addSmurf }
+  { fetchSmurfs, addSmurf, deleteSmurf, updateSmurf }
 )(App);
